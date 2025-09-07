@@ -19,22 +19,25 @@
             }
           </div>
         }
-
         <div class="carousel-inner text-center text-primary" style="min-height: 190px;">
-          @for (chunk of weeklyNoteChunks; track $index; let i = $index) {
-            <div class="carousel-item" [class.active]="i === 0">
-              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
-                @for (card of chunk; track $index) {
-                  <div>
-                    <app-dashboard-card
-                      [title]="card.title"
-                      [description]="card.description"
-                      [date]="card.date"
-                    ></app-dashboard-card>
-                  </div>
-                }
+          @if (resultWeeklyNotes.length != 0) {
+            @for (chunk of weeklyNoteChunks; track $index; let i = $index) {
+              <div class="carousel-item" [class.active]="i === 0">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
+                  @for (card of chunk; track $index) {
+                    <div>
+                      <app-dashboard-card
+                        [title]="card.title"
+                        [description]="card.description"
+                        [date]="card.date"
+                      ></app-dashboard-card>
+                    </div>
+                  }
+                </div>
               </div>
-            </div>
+            }
+          } @else {
+            <div class="d-flex justify-content-center align-items-center fw-bold fs-1 text-dark">Empty</div>
           }
         </div>
     </div>

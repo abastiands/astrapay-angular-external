@@ -1,0 +1,19 @@
+.current-panel-button {
+  width: 40px; height: 40px;
+}
+
+.current-panel-icon {
+  font-size: 24px;
+}
+
+.secondary-current-panel {
+  height: 150px !important;
+}
+
+.secondary-current-panel-button {
+  cursor: pointer;
+}
+
+.secondary-current-panel {
+  font-size: 80px;
+}
