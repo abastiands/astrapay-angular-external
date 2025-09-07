@@ -1,0 +1,22 @@
+.sidebar-menu {
+    font-size: 19px;
+}
+
+.sidebar-name {
+    color: #000;
+}
+
+.nav-link {
+  color: #00f;
+  padding-left: 24px !important;
+}
+
+.nav-link.active {
+  color: #00f !important;
+  background-color: #fff;
+  font-weight: 700;
+}
+
+.nav-link:hover {
+    background-color: #f0f0f0;
+}
