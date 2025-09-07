@@ -1,0 +1,20 @@
+<div class="card mb-2" [style.background]="bgColor()">
+  <div class="card-body">
+    <div class="d-flex justify-content-between mb-2">
+      <div class="card-title text-truncate">{{ title() }}</div>
+      <div>
+        <i class="bi bi-eye pe-2"></i>
+        <i class="bi bi-pencil pe-2"></i>
+        <i class="bi bi-trash"></i>
+      </div>
+    </div>
+    <div class="dashboard-card-content">
+      <p class="card-text text-truncate text-start">
+        {{ description() }}
+      </p>
+    </div>
+  </div>
+  <div class="card-footer text-start">
+    {{ date() }}
+  </div>
+</div>

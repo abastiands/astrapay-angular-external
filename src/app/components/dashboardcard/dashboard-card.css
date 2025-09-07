@@ -1,0 +1,13 @@
+.card-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.dashboard-card-content {
+  max-width: 200px;
+}
+
+.card-footer {
+  font-size: small;
+  font-weight: bold;
+}

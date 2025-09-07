@@ -1,53 +1,42 @@
 <div class="col-12">
     <div class="d-flex justify-content-between mb-3 align-items-center">
         <h1>Monthly Notes</h1>
-        <div>
-            <button class="btn btn-primary d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
-                <i class="bi bi-plus" style="font-size: 24px;"></i>
-            </button>
-        </div>
     </div>
-    <div id="carouselMonthlyNoteIndicators" class="carousel slide" style="margin-bottom: -30px;">
-        <div class="carousel-indicators" *ngIf="monthlyNotes.length > 6">
-            <button *ngFor="let chunk of monthlyNoteChunks; let i = index"
-                type="button"
-                class="bg-dark"
-                data-bs-target="#carouselMonthlyNoteIndicators"
-                [attr.data-bs-slide-to]="i"
-                [class.active]="i === 0"
-                aria-current="true"
-                style="height: 8px;"
-                [attr.aria-label]="'Slide ' + (i + 1)">
-            </button>
-        </div>
+  <div id="carouselWeeklyNoteIndicators" class="carousel slide" style="margin-bottom: -30px;">
+    @if (resultMonthlyNotes.length > 6) {
+      <div class="carousel-indicators">
+        @for (_ of monthlyNoteChunks; track $index; let i = $index) {
+          <button
+            type="button"
+            class="bg-dark"
+            data-bs-target="#carouselWeeklyNoteIndicators"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i === 0"
+            aria-current="true"
+            style="height: 8px;"
+            [attr.aria-label]="'Slide ' + (i + 1)">
+          </button>
+        }
+      </div>
+    }
 
-        <div class="carousel-inner text-center text-primary" style="min-height: 190px;">
-            <div *ngFor="let chunk of monthlyNoteChunks; let i = index" 
-                class="carousel-item" 
-                [class.active]="i === 0">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
-                    <div *ngFor="let card of chunk">
-                        <div class="card mb-2" [style.background]="bgColor()">
-                            <div class="card-body">
-                            <div class="d-flex justify-content-between mb-2">
-                                <h5 class="card-title">Card title</h5>
-                                <div>
-                                <i class="bi bi-eye pe-2"></i>
-                                <i class="bi bi-pencil pe-2"></i>
-                                <i class="bi bi-trash"></i>
-                                </div>
-                            </div>
-                            <div style="max-width: 200px;">
-                                <p class="card-text text-truncate text-start">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, distinctio doloremque? Quas odit omnis necessitatibus quibusdam accusamus nulla eius ab minima culpa aliquid deleniti qui dicta molestias, obcaecati commodi! Adipisci.
-                                </p>
-                            </div>
-                            <p class="text-start">2025-01-23</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="carousel-inner text-center text-primary" style="min-height: 190px;">
+
+      @for (chunk of monthlyNoteChunks; track $index; let i = $index) {
+        <div class="carousel-item" [class.active]="i === 0">
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
+            @for (card of chunk; track $index) {
+              <div>
+                <app-dashboard-card
+                  [title]="card.title"
+                  [description]="card.description"
+                  [date]="card.date"
+                ></app-dashboard-card>
+              </div>
+            }
+          </div>
         </div>
+      }
     </div>
+  </div>
 </div>

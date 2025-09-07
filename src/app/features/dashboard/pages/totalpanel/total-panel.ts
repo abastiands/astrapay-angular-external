@@ -13,7 +13,7 @@ export class TotalPanelComponent {
             title: 'Total Current Notes', value: 3, changeColor: 'success', compareValue: '+1'
         },
         {
-            title: 'Total Yesterday Notes', value: 2, changeColor: 'danger', compareValue: '-2'
+            title: 'Total Yesterday Notes', value: 2, changeColor: 'danger', compareValue: '-1'
         },
         {
             title: 'Total Weekly Notes', value: 10, changeColor: 'secondary', compareValue: '+0'

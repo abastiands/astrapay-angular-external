@@ -8,60 +8,52 @@
         </div>
     </div>
     <div id="carouselCurrentNoteIndicators" class="carousel slide" style="margin-bottom: -30px;">
-        <div class="carousel-indicators" *ngIf="currentNotes.length > 6">
-            <button *ngFor="let chunk of currentNoteChunks; let i = index"
+        @if (resultCurrentNotes.length > 6) {
+          <div class="carousel-indicators">
+            @for (_ of currentNoteChunks; track $index; let i = $index) {
+              <button
                 type="button"
                 class="bg-dark"
-                data-bs-target="#carouselCurrentNoteIndicators"
+                data-bs-target="#carouselWeeklyNoteIndicators"
                 [attr.data-bs-slide-to]="i"
                 [class.active]="i === 0"
                 aria-current="true"
                 style="height: 8px;"
                 [attr.aria-label]="'Slide ' + (i + 1)">
-            </button>
-        </div>
+              </button>
+            }
+          </div>
+        }
         <div class="carousel-inner text-center text-primary" style="min-height: 190px;">
-            <ng-container *ngIf="currentNotes.length != 0; else noNotes">
-                <div *ngFor="let chunk of currentNoteChunks; let i = index" 
-                    class="carousel-item" 
-                    [class.active]="i === 0">
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
-                        <div *ngFor="let card of chunk">
-                        <div class="card mb-2" [style.background]="bgColor()">
-                            <div class="card-body">
-                            <div class="d-flex justify-content-between mb-2">
-                                <h5 class="card-title">Card title</h5>
-                                <div>
-                                <i class="bi bi-eye pe-2"></i>
-                                <i class="bi bi-pencil pe-2"></i>
-                                <i class="bi bi-trash"></i>
-                                </div>
-                            </div>
-                            <div style="max-width: 200px;">
-                                <p class="card-text text-truncate text-start">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, distinctio doloremque? Quas odit omnis necessitatibus quibusdam accusamus nulla eius ab minima culpa aliquid deleniti qui dicta molestias, obcaecati commodi! Adipisci.
-                                </p>
-                            </div>
-                            <p class="text-start">2025-01-23</p>
-                            </div>
-                        </div>
-                        </div>
+          @if (resultCurrentNotes.length != 0) {
+            @for (chunk of currentNoteChunks; track $index; let i = $index) {
+              <div class="carousel-item" [class.active]="i === 0">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
+                  @for (card of chunk; track $index) {
+                    <div>
+                      <app-dashboard-card
+                        [title]="card.title"
+                        [description]="card.description"
+                        [date]="card.date"
+                      ></app-dashboard-card>
                     </div>
+                  }
                 </div>
-            </ng-container>
-            <ng-template #noNotes>
-                <div class="carousel-item active">
-                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
-                        <div class="card mb-2 ms-3" style="min-height: 178px;">
-                            <div class="card-body d-flex justify-content-center align-items-center">
-                                <a href="#">
-                                    <i class="bi bi-plus text-primary" style="font-size: 120px;"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+              </div>
+            }
+          } @else {
+            <div class="carousel-item active">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
+                <div class="card mb-2 ms-3" style="min-height: 178px;">
+                  <div class="card-body d-flex justify-content-center align-items-center">
+                    <a href="#">
+                      <i class="bi bi-plus text-primary" style="font-size: 120px;"></i>
+                    </a>
+                  </div>
                 </div>
-            </ng-template>
+              </div>
+            </div>
+          }
         </div>
     </div>
     </div>

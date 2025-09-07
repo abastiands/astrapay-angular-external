@@ -1,20 +1,37 @@
 import { Component } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { getRandomBrightPastelColor } from "../../../../shared/utils/colorutil";
 import { chunkArray } from "../../../../shared/utils/globalutil";
+import {DashboardCardComponent} from '../../../../components/dashboardcard/dashboard-card';
+import {dateNow} from '../../../../shared/utils/dateutil';
 
 @Component({
     selector: 'app-monthly-panel',
     standalone: true,
-    imports: [CommonModule],
+  imports: [DashboardCardComponent],
     templateUrl: './monthly-panel.html'
 })
 export class MonthlyPanelComponent{
-    monthlyNotes = Array(24);
-    
-    bgColor = getRandomBrightPastelColor
+    resultMonthlyNotes = [
+      {
+        title: 'Monthly Panel 1', description: 'Monthly Panel 1', date: dateNow(),
+      },
+      {
+        title: 'Monthly Panel 1', description: 'Monthly Panel 1', date: dateNow(),
+      },
+      {
+        title: 'Monthly Panel 1', description: 'Monthly Panel 1', date: dateNow(),
+      },
+      {
+        title: 'Monthly Panel 1', description: 'Monthly Panel 1', date: dateNow(),
+      },
+      {
+        title: 'Monthly Panel 1', description: 'Monthly Panel 1', date: dateNow(),
+      },
+      {
+        title: 'Monthly Panel 1', description: 'Monthly Panel 1', date: dateNow(),
+      },
+    ]
 
     get monthlyNoteChunks() {
-        return chunkArray(this.monthlyNotes);
+      return chunkArray(this.resultMonthlyNotes);
     }
 }
