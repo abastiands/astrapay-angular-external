@@ -1,0 +1,59 @@
+<div class="col-12 py-3">
+    <div class="d-flex justify-content-between mb-3 align-items-center">
+        <h1>Current Notes</h1>
+        <div>
+            <button class="btn btn-primary d-flex justify-content-center align-items-center current-panel-button" data-bs-toggle="modal" data-bs-target="#addModal">
+                <i class="bi bi-plus current-panel-icon"></i>
+            </button>
+        </div>
+    </div>
+    <div id="carouselCurrentNoteIndicators" class="carousel slide" style="margin-bottom: -30px;">
+        @if (resultCurrentNotes()!.length > chunkSize) {
+          <div class="carousel-indicators">
+            @for (_ of currentNoteChunks(); track $index; let i = $index) {
+              <button
+                type="button"
+                class="bg-dark"
+                data-bs-target="#carouselCurrentNoteIndicators"
+                [attr.data-bs-slide-to]="i"
+                [class.active]="i === 0"
+                aria-current="true"
+                style="height: 8px;"
+                [attr.aria-label]="'Slide ' + (i + 1)">
+              </button>
+            }
+          </div>
+        }
+        <div class="carousel-inner text-center text-primary" style="min-height: 190px;">
+          @if (resultCurrentNotes()!.length > 0) {
+            @for (chunk of currentNoteChunks(); track $index; let i = $index) {
+              <div class="carousel-item" [class.active]="i === 0">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xxl-6">
+                  @for (card of chunk; track $index) {
+                    <div>
+                      <app-dashboard-card
+                        [title]="card.title"
+                        [description]="card.description"
+                        [date]="card.date"
+                      ></app-dashboard-card>
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+          } @else {
+            <div class="carousel-item active">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xxl-6">
+                <a class="secondary-current-panel-button" data-bs-toggle="modal" data-bs-target="#addModal">
+                  <div class="card secondary-panel secondary-current-panel">
+                      <div class="card-body d-flex justify-content-center align-items-center">
+                          <i class="bi bi-plus text-primary secondary-current-panel-icon"></i>
+                      </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+.card-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.dashboard-card-content {
+  max-width: 200px;
+}
+
+.card-footer {
+  font-size: small;
+  font-weight: bold;
+}
+
+.dashboard-card-icon {
+  cursor: pointer;
+  color: #000;
+}
+
+.dashboard-card-icon:hover {
+  color: #fff;
+}

@@ -1,0 +1,15 @@
+<div class="row">
+    <app-total-panel
+      [totalCurrentNote]="totalCurrentNote()"
+      [totalYesterdayNote]="totalYesterdayNote()"
+      [totalWeeklyNote]="totalWeeklyNote()"
+      [totalMonthlyNote]="totalMonthlyNote()"
+      [compareCurrentNote]="compareCurrentNote()"
+      [compareYesterdayNote]="compareYesterdayNote()"
+      [compareWeeklyNote]="compareWeeklyNote()"
+      [compareMonthlyNote]="compareMonthlyNote()"
+    ></app-total-panel>
+    <app-current-panel [resultCurrentNotes]="filterCurrentNotes()"></app-current-panel>
+    <app-weekly-panel [resultWeeklyNotes]="filterWeeklyNotes()"></app-weekly-panel>
+    <app-monthly-panel [resultMonthlyNotes]="filterMonthlyNotes()"></app-monthly-panel>
+</div>

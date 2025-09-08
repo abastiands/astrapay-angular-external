@@ -1,0 +1,45 @@
+@if (notes().length > 0) {
+<table datatable class="row-border hover">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+      @for (item of notes(); track item.id; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.date }}</td>
+          <td>
+            <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#viewModal" (click)="viewNote(item.id!)">
+              <i class="bi bi-eye pe-2"></i>
+            </a>
+<!--            <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#editModal">-->
+<!--              <i class="bi bi-pencil pe-2"></i>-->
+<!--            </a>-->
+            <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="deleteNote(item.id!)">
+              <i class="bi bi-trash"></i>
+            </a>
+          </td>
+        </tr>
+      }
+  </tbody>
+</table>
+} @else {
+  <div class="d-flex justify-content-center align-items-center fw-bold">
+    <td colspan="5" class="text-center">No data available</td>
+  </div>
+}
+<app-view-modal
+  [title]="selectedNote()?.title"
+  [description]="selectedNote()?.description"
+  [date]="selectedNote()?.date"
+></app-view-modal>
+<app-edit-modal></app-edit-modal>
+<app-delete-modal [noteId]="selectedNoteId" (deleteConfirmed)="deleteNote($event)"></app-delete-modal>
