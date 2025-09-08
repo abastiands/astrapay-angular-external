@@ -2,6 +2,20 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.2.
 
+## Version project
+nvm 1.2.2
+node 24.7.0 or 20+
+angular 20
+
+## Clone project
+git clone [name repo]
+
+## Install App
+npm install
+
+## Run App
+npm start
+
 ## Development server
 
 To start a local development server, run:
