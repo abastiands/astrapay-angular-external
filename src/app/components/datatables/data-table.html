@@ -1,3 +1,4 @@
+@if (notes().length > 0) {
 <table datatable class="row-border hover">
   <thead>
     <tr>
@@ -9,22 +10,32 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Title</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus ea eius fugit itaque quos reprehenderit. Asperiores deserunt hic non!</td>
-      <td>2025-07-09</td>
-      <td>
-        <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#viewModal">
-          <i class="bi bi-eye pe-2"></i>
-        </a>
-        <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#editModal">
-          <i class="bi bi-pencil pe-2"></i>
-        </a>
-        <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#deleteModal">
-          <i class="bi bi-trash"></i>
-        </a>
-      </td>
-    </tr>
+      @for (item of notes(); track item.id; let i = $index) {
+        <tr>
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.date }}</td>
+          <td>
+            <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#viewModal">
+              <i class="bi bi-eye pe-2"></i>
+            </a>
+            <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#editModal">
+              <i class="bi bi-pencil pe-2"></i>
+            </a>
+            <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#deleteModal">
+              <i class="bi bi-trash"></i>
+            </a>
+          </td>
+        </tr>
+      }
   </tbody>
 </table>
+} @else {
+  <div class="d-flex justify-content-center align-items-center fw-bold">
+    <td colspan="5" class="text-center">No data available</td>
+  </div>
+}
+<app-view-modal></app-view-modal>
+<app-edit-modal></app-edit-modal>
+<app-delete-modal></app-delete-modal>

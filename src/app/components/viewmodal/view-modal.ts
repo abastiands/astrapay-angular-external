@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component, input, signal} from '@angular/core';
 
 @Component({
   selector: 'app-view-modal',
@@ -6,7 +6,7 @@ import {Component, signal} from '@angular/core';
   templateUrl: './view-modal.html',
 })
 export class ViewModalComponent {
-  title = signal('');
-  description = signal('');
-  date = signal('');
+  title = input<string>('');
+  description = input<string>('');
+  date = input<string>('');
 }

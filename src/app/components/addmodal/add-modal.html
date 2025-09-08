@@ -1,28 +1,58 @@
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="addModalLabel">Add Data</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body text-start">
-        <div>
-          <label for="addTitle" class="fw-bold">Title</label>
-          <input id="addTitle" type="text" class="form-control mb-2" placeholder="Title">
+      <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="addModalLabel">Add Data</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <div>
-          <label for="addDescription" class="fw-bold">Description</label>
-          <textarea id="addDescription" class="form-control mb-2" placeholder="Description" rows="3"></textarea>
+
+        <div class="modal-body text-start">
+          <div class="mb-2">
+            <label for="addTitle" class="fw-bold">Title</label>
+            <input id="addTitle" type="text" class="form-control" placeholder="Title" formControlName="title">
+
+            @if (noteForm.controls.title.touched && noteForm.controls.title.invalid) {
+              @if (noteForm.controls.title.errors?.['required']) {
+                <small class="text-danger">Title must filled</small>
+              }
+              @if (noteForm.controls.title.errors?.['maxlength']) {
+                <small class="text-danger">Max 15 character</small>
+              }
+            }
+          </div>
+
+          <div class="mb-2">
+            <label for="addDescription" class="fw-bold">Description</label>
+            <textarea id="addDescription" class="form-control" placeholder="Description" rows="3" formControlName="description"></textarea>
+
+            @if (noteForm.controls.description.touched && noteForm.controls.description.invalid) {
+              @if (noteForm.controls.description.errors?.['required']) {
+                <small class="text-danger">Description must filled</small>
+              }
+              @if (noteForm.controls.description.errors?.['maxlength']) {
+                <small class="text-danger">Max 50 character</small>
+              }
+            }
+          </div>
+
+          <div>
+            <label for="addDate" class="fw-bold">Date</label>
+            <input id="addDate" type="date" class="form-control" formControlName="date">
+
+            @if (noteForm.controls.date.touched && noteForm.controls.date.invalid) {
+              @if (noteForm.controls.date.errors?.['required']) {
+                <small class="text-danger">Date must filled</small>
+              }
+            }
+          </div>
         </div>
-        <div>
-          <label for="addDate" class="fw-bold">Date</label>
-          <input id="addDate" type="date" class="form-control">
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary" type="submit" [disabled]="noteForm.invalid">Save</button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button class="btn btn-primary">Save</button>
-      </div>
+      </form>
     </div>
   </div>
 </div>
