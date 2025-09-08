@@ -6,7 +6,7 @@ import {Component, input, signal} from '@angular/core';
   templateUrl: './view-modal.html',
 })
 export class ViewModalComponent {
-  title = input<string>('');
-  description = input<string>('');
-  date = input<string>('');
+  title = input<string>();
+  description = input<string>();
+  date = input<string>();
 }
