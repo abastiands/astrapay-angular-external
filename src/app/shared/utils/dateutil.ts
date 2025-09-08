@@ -35,9 +35,21 @@ export function monthStartDate(): string {
   return d.toISOString().split('T')[0];
 }
 
+export function monthEndDate(): string {
+  const d = new Date();
+  d.setMonth(d.getMonth() + 1, 0)
+  return d.toISOString().split('T')[0];
+}
+
 export function monthStartDateLastMonth(): string {
   const d = new Date();
   d.setMonth(d.getMonth() - 1);
   d.setDate(1);
+  return d.toISOString().split('T')[0];
+}
+
+export function monthEndDateLastMonth(): string {
+  const d = new Date();
+  d.setDate(0);
   return d.toISOString().split('T')[0];
 }

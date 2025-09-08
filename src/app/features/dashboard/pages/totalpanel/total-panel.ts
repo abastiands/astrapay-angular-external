@@ -51,7 +51,7 @@ export class TotalPanelComponent {
     }
 
   compareValue(value: number | undefined): string {
-    if (value === undefined || value === 0 || value > 0) {
+    if (value === undefined || value === 0) {
       return '+0';
     } else if (value > 0) {
       return '+' + value.toString();
