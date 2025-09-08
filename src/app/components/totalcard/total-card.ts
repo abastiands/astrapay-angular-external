@@ -6,8 +6,8 @@ import { Component, input } from "@angular/core";
     templateUrl: './total-card.html'
 })
 export class TotalCardComponent {
-    title = input<string>('Total');
-    value = input<number>(0);
-    changeColor = input<string>('secondary');
-    compareValue = input<string>('+0');
+    title = input<string>();
+    value = input<number>();
+    changeColor = input<string>();
+    compareValue = input<string>();
 }

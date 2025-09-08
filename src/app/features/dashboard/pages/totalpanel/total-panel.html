@@ -1,6 +1,6 @@
 <div class="col-12">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
-        @for (totalPanel of resultTotalPanel; track $index) {
+        @for (totalPanel of resultTotalPanel(); track $index) {
             <div class="col">
                 <app-total-card
                     [title]="totalPanel.title"
