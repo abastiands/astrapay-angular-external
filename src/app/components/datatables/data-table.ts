@@ -15,6 +15,7 @@ import {NoteService} from '../../features/note/services/note.service';
 export class DataTableComponent implements OnInit {
   notes = signal<Note[]>([]);
   selectedNote = signal<Note | null>(null)
+  selectedNoteId!: number;
 
   constructor(private noteService: NoteService) {}
 
@@ -38,7 +39,17 @@ export class DataTableComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching note:', error);
-        // Handle error (e.g., show a toast or alert)
+      }
+    });
+  }
+
+  deleteNote(id: number) {
+    this.noteService.deleteNote(id).subscribe({
+      next: () => {
+        console.log('Note deleted successfully');
+      },
+      error: (error) => {
+        console.error('Error deleting note:', error);
       }
     });
   }

@@ -1,5 +1,4 @@
-import {Component, EventEmitter, input, Output} from '@angular/core';
-import {NoteService} from '../../features/note/services/note.service';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
   selector: 'app-delete-modal',
@@ -7,23 +6,10 @@ import {NoteService} from '../../features/note/services/note.service';
   templateUrl: './delete-modal.html',
 })
 export class DeleteModalComponent {
-  noteId = input<number>(); // Input dari parent
-  @Output() deletedNoteId = new EventEmitter<void>();
+  @Input() noteId!: number;
+  @Output() deleteConfirmed = new EventEmitter<number>();
 
-  constructor(private noteService: NoteService) {}
-
-  onSubmit() {
-    const id = this.noteId();
-    if (!id) return;
-
-    this.noteService.deleteNote(id).subscribe({
-      next: (res) => {
-        console.log('Deleted:', res);
-        this.deletedNoteId.emit();
-      },
-      error: (err) => {
-        console.error('Delete gagal:', err);
-      },
-    });
+  confirmDelete() {
+    this.deleteConfirmed.emit(this.noteId);
   }
 }

@@ -23,7 +23,7 @@
             <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#editModal">
               <i class="bi bi-pencil pe-2"></i>
             </a>
-            <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#deleteModal">
+            <a class="dashboard-card-icon fw-bold" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="deleteNote(item.id!)">
               <i class="bi bi-trash"></i>
             </a>
           </td>
@@ -42,4 +42,4 @@
   [date]="selectedNote()?.date"
 ></app-view-modal>
 <app-edit-modal></app-edit-modal>
-<app-delete-modal></app-delete-modal>
+<app-delete-modal [noteId]="selectedNoteId" (deleteConfirmed)="deleteNote($event)"></app-delete-modal>
