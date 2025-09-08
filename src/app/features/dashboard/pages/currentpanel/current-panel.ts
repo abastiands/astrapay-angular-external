@@ -1,6 +1,7 @@
 import {Component} from "@angular/core";
 import { chunkArray } from "../../../../shared/utils/globalutil";
 import {DashboardCardComponent} from '../../../../components/dashboardcard/dashboard-card';
+import {dateNow} from '../../../../shared/utils/dateutil';
 
 @Component({
     selector: 'app-current-panel',
@@ -11,7 +12,15 @@ import {DashboardCardComponent} from '../../../../components/dashboardcard/dashb
 })
 export class CurrentPanelComponent{
     resultCurrentNotes = [
-      { title: '', description: '', date: '' }
+      { title: 'title', description: 'description', date: dateNow() },
+      { title: 'title', description: 'description', date: dateNow() },
+      { title: 'title', description: 'description', date: dateNow() },
+      { title: 'title', description: 'description', date: dateNow() },
+      { title: 'title', description: 'description', date: dateNow() },
+      { title: 'title', description: 'description', date: dateNow() },
+      { title: 'title', description: 'description', date: dateNow() },
+      { title: 'title', description: 'description', date: dateNow() },
+      { title: 'title', description: 'description', date: dateNow() }
     ];
 
     get currentNoteChunks() {
