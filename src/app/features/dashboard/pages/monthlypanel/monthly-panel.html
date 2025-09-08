@@ -2,14 +2,14 @@
     <div class="d-flex justify-content-between mb-3 align-items-center">
         <h1>Monthly Notes</h1>
     </div>
-  <div id="carouselWeeklyNoteIndicators" class="carousel slide" style="margin-bottom: -30px;">
+  <div id="carouselMonthlyNoteIndicators" class="carousel slide" style="margin-bottom: -30px;">
     @if (resultMonthlyNotes.length > chunkSize) {
       <div class="carousel-indicators">
         @for (_ of monthlyNoteChunks; track $index; let i = $index) {
           <button
             type="button"
             class="bg-dark"
-            data-bs-target="#carouselWeeklyNoteIndicators"
+            data-bs-target="#carouselMonthlyNoteIndicators"
             [attr.data-bs-slide-to]="i"
             [class.active]="i === 0"
             aria-current="true"
