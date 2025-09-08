@@ -6,29 +6,30 @@ import {dateNow} from '../../../../shared/utils/dateutil';
 @Component({
     selector: 'app-weekly-panel',
     standalone: true,
-  imports: [DashboardCardComponent],
-    templateUrl: './weekly-panel.html'
+    imports: [DashboardCardComponent],
+    templateUrl: './weekly-panel.html',
+    styleUrl: '../dashboard.css'
 })
 export class WeeklyPanelComponent{
     resultWeeklyNotes = [
       {
-        title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
+        title: '', description: '', date: '',
       },
-      {
-        title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
-      },
-      {
-        title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
-      },
-      {
-        title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
-      },
-      {
-        title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
-      },
-      {
-        title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
-      },
+      // {
+      //   title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
+      // },
+      // {
+      //   title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
+      // },
+      // {
+      //   title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
+      // },
+      // {
+      //   title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
+      // },
+      // {
+      //   title: 'Weekly Panel 1', description: 'Weekly Panel 1', date: dateNow(),
+      // },
     ]
 
     get weeklyNoteChunks() {
