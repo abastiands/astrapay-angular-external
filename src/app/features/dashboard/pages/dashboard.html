@@ -9,7 +9,7 @@
       [compareWeeklyNote]="compareWeeklyNote()"
       [compareMonthlyNote]="compareMonthlyNote()"
     ></app-total-panel>
-    <app-current-panel></app-current-panel>
-    <app-weekly-panel></app-weekly-panel>
-    <app-monthly-panel></app-monthly-panel>
+    <app-current-panel [resultCurrentNotes]="filterCurrentNotes()"></app-current-panel>
+    <app-weekly-panel [resultWeeklyNotes]="filterWeeklyNotes()"></app-weekly-panel>
+    <app-monthly-panel [resultMonthlyNotes]="filterMonthlyNotes()"></app-monthly-panel>
 </div>

@@ -5,12 +5,13 @@ import { WeeklyPanelComponent } from "./weeklypanel/weekly-panel";
 import { MonthlyPanelComponent } from "./monthlypanel/monthly-panel";
 import {Note} from '../../note/entity/note.entity';
 import {NoteService} from '../../note/services/note.service';
+import {dataCurrentNotes, dataMonthlyNotes, dataWeeklyNotes} from '../../../shared/utils/datautil';
 import {
   totalCurrentNotes, totalLastMonthNotes, totalLastWeekNotes,
   totalMonthlyNotes, totalTwoDaysAgoNotes,
   totalWeeklyNotes,
   totalYesterdayNotes
-} from '../../../shared/utils/totalUtil';
+} from '../../../shared/utils/totalutil';
 
 @Component({
     selector: 'app-dashboard',
@@ -23,16 +24,17 @@ export class DashboardComponent implements OnInit {
 
   totalCurrentNote = computed(() => totalCurrentNotes(this.notes()));
   totalYesterdayNote = computed(() => totalYesterdayNotes(this.notes()));
-  totalTwoDaysAgoNote = computed(() => totalTwoDaysAgoNotes(this.notes()));
   totalWeeklyNote = computed(() => totalWeeklyNotes(this.notes()));
-  totalLastWeekNote = computed(() => totalLastWeekNotes(this.notes()));
   totalMonthlyNote = computed(() => totalMonthlyNotes(this.notes()));
-  totalLastMonthNote = computed(() => totalLastMonthNotes(this.notes()));
 
   compareCurrentNote = computed(() => totalCurrentNotes(this.notes()) - totalYesterdayNotes(this.notes()));
   compareYesterdayNote = computed(() => totalYesterdayNotes(this.notes()) - totalTwoDaysAgoNotes(this.notes()));
   compareWeeklyNote = computed(() => totalWeeklyNotes(this.notes()) - totalLastWeekNotes(this.notes()));
   compareMonthlyNote = computed(() => totalMonthlyNotes(this.notes()) - totalLastMonthNotes(this.notes()));
+
+  filterCurrentNotes = computed(() => dataCurrentNotes(this.notes()));
+  filterWeeklyNotes = computed(() => dataWeeklyNotes(this.notes()));
+  filterMonthlyNotes = computed(() => dataMonthlyNotes(this.notes()));
 
   constructor(private noteService: NoteService) {}
 

@@ -3,9 +3,9 @@
         <h1>Monthly Notes</h1>
     </div>
   <div id="carouselMonthlyNoteIndicators" class="carousel slide" style="margin-bottom: -30px;">
-    @if (resultMonthlyNotes.length > chunkSize) {
+    @if (resultMonthlyNotes()!.length > chunkSize) {
       <div class="carousel-indicators">
-        @for (_ of monthlyNoteChunks; track $index; let i = $index) {
+        @for (_ of monthlyNoteChunks(); track $index; let i = $index) {
           <button
             type="button"
             class="bg-dark"
@@ -21,8 +21,8 @@
     }
 
     <div class="carousel-inner text-center text-primary" style="min-height: 190px;">
-      @if (resultMonthlyNotes.length > 1 && resultMonthlyNotes[0].title != '') {
-        @for (chunk of monthlyNoteChunks; track $index; let i = $index) {
+      @if (resultMonthlyNotes()!.length > 0) {
+        @for (chunk of monthlyNoteChunks(); track $index; let i = $index) {
           <div class="carousel-item" [class.active]="i === 0">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xxl-6">
               @for (card of chunk; track $index) {

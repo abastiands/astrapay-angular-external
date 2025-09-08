@@ -1,7 +1,7 @@
-import {Component, HostListener} from "@angular/core";
+import {Component, computed, HostListener, input} from "@angular/core";
 import {chunkArray, getResponsiveChunkSize} from "../../../../shared/utils/globalutil";
 import {DashboardCardComponent} from '../../../../components/dashboardcard/dashboard-card';
-import {dateNow} from '../../../../shared/utils/dateutil';
+import {Note} from '../../../note/entity/note.entity';
 
 @Component({
     selector: 'app-current-panel',
@@ -11,17 +11,9 @@ import {dateNow} from '../../../../shared/utils/dateutil';
     styleUrls: ['./current-panel.css', '../dashboard.css'],
 })
 export class CurrentPanelComponent{
-    resultCurrentNotes = [
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() }
-    ];
+    resultCurrentNotes = input<Note[]>();
+
+    currentNoteChunks = computed(() => chunkArray(this.resultCurrentNotes()!, this.chunkSize));
 
     chunkSize = getResponsiveChunkSize(window.innerWidth);
 
@@ -32,7 +24,4 @@ export class CurrentPanelComponent{
       this.chunkSize = getResponsiveChunkSize(window.innerWidth);
     }
 
-    get currentNoteChunks() {
-        return chunkArray(this.resultCurrentNotes, this.chunkSize);
-    }
 }

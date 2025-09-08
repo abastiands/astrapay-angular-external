@@ -1,7 +1,7 @@
-import {Component, HostListener} from "@angular/core";
+import {Component, computed, HostListener, input} from "@angular/core";
 import {chunkArray, getResponsiveChunkSize} from "../../../../shared/utils/globalutil";
 import {DashboardCardComponent} from '../../../../components/dashboardcard/dashboard-card';
-import {dateNow} from '../../../../shared/utils/dateutil';
+import {Note} from '../../../note/entity/note.entity';
 
 @Component({
     selector: 'app-weekly-panel',
@@ -11,17 +11,9 @@ import {dateNow} from '../../../../shared/utils/dateutil';
     styleUrl: '../dashboard.css'
 })
 export class WeeklyPanelComponent{
-    resultWeeklyNotes = [
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
-      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() }
-    ];
+    resultWeeklyNotes = input<Note[]>();
+
+    weeklyNoteChunks = computed(() => chunkArray(this.resultWeeklyNotes()!, this.chunkSize));
 
     chunkSize = getResponsiveChunkSize(window.innerWidth);
 
@@ -30,9 +22,5 @@ export class WeeklyPanelComponent{
     @HostListener("window:resize", [])
     onResize() {
       this.chunkSize = getResponsiveChunkSize(window.innerWidth);
-    }
-
-    get weeklyNoteChunks() {
-      return chunkArray(this.resultWeeklyNotes, this.chunkSize);
     }
 }
