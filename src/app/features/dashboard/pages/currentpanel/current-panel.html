@@ -8,7 +8,7 @@
         </div>
     </div>
     <div id="carouselCurrentNoteIndicators" class="carousel slide" style="margin-bottom: -30px;">
-        @if (resultCurrentNotes.length > 6) {
+        @if (resultCurrentNotes.length > chunkSize) {
           <div class="carousel-indicators">
             @for (_ of currentNoteChunks; track $index; let i = $index) {
               <button
@@ -28,7 +28,7 @@
           @if (resultCurrentNotes.length > 1 && resultCurrentNotes[0].title != '') {
             @for (chunk of currentNoteChunks; track $index; let i = $index) {
               <div class="carousel-item" [class.active]="i === 0">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xxl-6">
                   @for (card of chunk; track $index) {
                     <div>
                       <app-dashboard-card
@@ -43,7 +43,7 @@
             }
           } @else {
             <div class="carousel-item active">
-              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-6">
+              <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 row-cols-xxl-6">
                 <a class="secondary-current-panel-button" data-bs-toggle="modal" data-bs-target="#addModal">
                   <div class="card secondary-panel secondary-current-panel">
                       <div class="card-body d-flex justify-content-center align-items-center">

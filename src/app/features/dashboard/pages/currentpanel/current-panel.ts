@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import { chunkArray } from "../../../../shared/utils/globalutil";
+import {Component, HostListener} from "@angular/core";
+import {chunkArray, getResponsiveChunkSize} from "../../../../shared/utils/globalutil";
 import {DashboardCardComponent} from '../../../../components/dashboardcard/dashboard-card';
 import {dateNow} from '../../../../shared/utils/dateutil';
 
@@ -12,18 +12,27 @@ import {dateNow} from '../../../../shared/utils/dateutil';
 })
 export class CurrentPanelComponent{
     resultCurrentNotes = [
-      { title: 'title', description: 'description', date: dateNow() },
-      { title: 'title', description: 'description', date: dateNow() },
-      { title: 'title', description: 'description', date: dateNow() },
-      { title: 'title', description: 'description', date: dateNow() },
-      { title: 'title', description: 'description', date: dateNow() },
-      { title: 'title', description: 'description', date: dateNow() },
-      { title: 'title', description: 'description', date: dateNow() },
-      { title: 'title', description: 'description', date: dateNow() },
-      { title: 'title', description: 'description', date: dateNow() }
+      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
+      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
+      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
+      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
+      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
+      { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
+      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
+      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() },
+      // { title: 'titletitletitle', description: 'descriptiondescriptiondescriptiondescriptiondescription', date: dateNow() }
     ];
 
+    chunkSize = getResponsiveChunkSize(window.innerWidth);
+
+    constructor() {}
+
+    @HostListener("window:resize", [])
+    onResize() {
+      this.chunkSize = getResponsiveChunkSize(window.innerWidth);
+    }
+
     get currentNoteChunks() {
-        return chunkArray(this.resultCurrentNotes);
+        return chunkArray(this.resultCurrentNotes, this.chunkSize);
     }
 }
